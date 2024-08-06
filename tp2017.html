@@ -1,0 +1,708 @@
+﻿<!-- Curso de HTML - VA - Turma de programação - aluno 3 - António Marcelo Nicolau Marques -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>TP</title>
+<style type="text/css">
+
+	#pagina {    
+	    width:1000px;
+	    height:800px;
+	    margin-top:0;
+	    margin-left:auto;
+	    margin-bottom:0;
+	    margin-right:auto;
+	    background-color:#FFF;
+		border-width: 7px;
+		border-style: solid;
+		border-color: white;
+
+	}
+
+	#cabeca{
+		width:100%;
+		height:10%;
+		background-color:#EEE;
+		color:#222;
+	}
+
+	#logo{
+		width:75px;
+		height:75px;
+		float:left;
+		background-color: aqua  ;
+		text-align: center;
+		box-shadow: -5px 5px 0 #333;
+		border-width: 2px;
+		border-style: solid;
+		border-color: cyan;
+		border-radius: 10px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 3em;
+		font-weight: bold;
+	}
+
+
+	#cabeca_cont{
+		width:90%;
+		height:75px;
+		float: right;
+		background-color:#DDD;
+		text-align: center;
+	/*	box-shadow: 5px 5px 0 #333; */
+		border-width: 4px;
+		border-style: solid;
+		border-color: white;
+		border-radius: 10px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 2em;
+		font-weight: bold;	
+	}
+
+
+	#conteudo {    
+	    width:100%;
+	    height:80%;
+	    float:none;
+	    margin-top:0;
+	    margin-left:auto;
+	    margin-bottom:0;
+	    margin-right:auto;
+	    background-color:#EEE;
+	}
+
+	#menu {
+		width: 10%;
+		height: 100%;
+		float:left;
+		background-color:#FFF;
+	}
+	.menu {
+		width:100px;
+		height:30px;
+		font: small Arial, Helvetica, sans-serif;
+		background-color:#FFF;
+		cursor: pointer;
+	}
+
+	#tabela {
+		width: 90%;
+		height: 100%;
+		float:right;
+		background-color:#FFF;
+		cursor: pointer;
+	}
+
+	td {
+		width:40px;
+		height:40px;
+		font: x-large Times, Arial, Helvetiva, sans-serif;
+		text-align:center;
+	}
+
+	.e {   /* é elemento */
+		border:thin black solid;
+	}
+	.l {   /* é legenda */
+		font: small Arial, Helvetica, sans-serif;
+		border: thin black dashed;
+	}
+	.gr { /* é um gás nobre */
+/*		background: aqua; 		*/
+	}
+	.g { /* é um gás */
+	}	
+	.h { /* é um halogéneo */
+	}
+	.tr { /* é uma terra rara */
+	}
+	.mt { /* é um metal de transição */
+	}
+	.ma { /* é um metal alcalino */
+	}
+	.nm { /* é um não metal */
+	}
+	.at { /* é um alcalino terroso */
+	}
+	.lq { /* é um líquido */
+	}
+	.sm { /* é um semi metal */
+	}
+	.mb { /* é um metal básico */
+	}
+	.ar { /* é um artificial */
+	}
+	.la { /* é um lantanídeo */
+	}
+	.ac { /* é um actinídeo */
+	}
+	.ra { /* é radioativo */
+	}
+	#caixa {
+	    width: 72%;  /* 52% */
+	    height:100%;
+	    margin-top:0;
+	    margin-left:auto;
+	    margin-bottom:0;
+	    margin-right:auto;
+	    background-color:#EEE;
+		border-width: 3px;
+		border-style: solid;
+		border-color: white;
+	}
+	#etitul1{ /* título um da tabela central */
+	}
+	#etitul4{ /* título quatro da tabela central */
+	}
+	#enome{ /* campo que recebe nome do elemento */
+	}
+	#enumero{ /* campo que recebe numero do elemento */
+	}
+	#epeso{ /* campo que recebe massa do elemento */
+	}
+	#jogIni { /* botão de início do jogo */
+	}
+	#jogo {
+		visibility:hidden;
+	}
+	#eresposta {
+		
+	}
+	.lxsmall {
+		font-size: x-small;
+/*		vertical-align: top; */
+	}
+	.lmedia {
+		font-size: medium;
+/*		vertical-align: top; */
+	}
+	.lbold {
+		font-weight:bold;
+	}
+	.lsmall {
+		font-size: small;
+/*		vertical-align: top; */
+	}
+
+</style>
+<script type = "text/javascript">
+//window.i = 5;
+
+ var estado = 0;  // 0 - estado consulta    1 - estado jogo nível 1   2 - estado jogo nível 2
+ var escolha = 0;
+
+ var elementos = 	[['',            '',     ''],
+ 					['Hidrogénio',   '1',    '1,002'],
+ 					['Hélio',        '2',    '4,002'],
+ 					['Lítio',        '3',    '6,002'],
+ 					['Berílio',      '4',    '8,003'],
+ 					['Boro',         '5',   '10,811'],
+ 					['Carbono',      '6',   '12,011'],
+ 					['Azoto',        '7',   '14,006'],
+ 					['Oxigénio',     '8',   '15,999'],
+ 					['Fluor',        '9',   '18,998'],
+ 					['Neon',        '10',   '20,180'],
+ 					['Sódio',       '11',   '22,989'],
+ 					['Magnésio',    '12',   '24,305'],
+ 					['Alumínio',    '13',   '26,981'],
+ 					['Silício',     '14',   '28,085'],
+ 					['Fósforo',     '15',   '30,973'],
+ 					['Enxofre',     '16',   '32,066'],
+ 					['Cloro',       '17',   '35,453'],
+ 					['Argon',       '18',   '39,948'],
+ 					['Potássio',    '19',   '39,098'],
+ 					['Cálcio',      '20',   '40,078'],
+ 					['Escândio',    '21',   '44,956'],
+ 					['Titânio',     '22',   '47,88'],
+ 					['Vanádio',     '23',   '50,941'],
+ 					['Cromo',       '24',   '51,996'],
+ 					['Manganésio',  '25',   '54,938'],
+ 					['Ferro',       '26',   '55,847'],
+ 					['Cobalto',     '27',   '58,933'],
+ 					['Níquel',      '28',   '58,693'],
+ 					['Cobre',       '29',   '63,546'],
+ 					['Zinco',       '30',   '65,39'],
+ 					['Gálio',       '31',   '69,723'],
+ 					['Germânio',    '32',   '72,61'],
+ 					['Arsénio',     '33',   '74,921'],
+ 					['Selénio',     '34',   '78,96'],
+ 					['Bromo',       '35',   '79,904'],
+ 					['Kripton',     '36',   '83,80'],
+ 					['Rubídio',     '37',   '85,467'],
+ 					['Estrôncio',   '38',   '87,62'],
+ 					['Ítrio',       '39',   '88,905'],
+ 					['Zircónio',    '40',   '91,224'],
+ 					['Nióbio',      '41',   '92,906'],
+ 					['Molibdénio',  '42',   '95,94'],
+ 					['Tecnécio',    '43',  '(98)'],
+ 					['Ruténio',     '44',  '101,07'],
+ 					['Ródio',       '45',  '102,905'],
+ 					['Paládio',     '46',  '106,42'],
+ 					['Prata',       '47',  '107,868'],
+ 					['Cádmio',      '48',  '112,411'],
+ 					['Índio',       '49',  '114,82'],
+ 					['Estanho',     '50',  '118,71'],
+ 					['Antimónio',   '51',  '121,757'],
+ 					['Telúrio',     '52',  '127,60'],
+ 					['Iodo',        '53',  '126,904'],
+ 					['Xenon',       '54',  '131,29'],
+ 					['Césio',       '55',  '132,905'],
+ 					['Bário',       '56',  '137,327'],
+					['Lantânio',    '57',  '138,905'],
+					['Cério',       '58',  '140,115'],
+					['Praseodímio', '59',  '140,908'],
+					['Neodímio',    '60',  '144,24'],
+					['Promécio',    '61',  '144,913'],
+					['Samário',     '62',  '150,36'],
+					['Európio',     '63',  '151,965'],
+					['Gadolínio',   '64',  '157,25'],
+					['Térbio',      '65',  '158,925'],
+					['Disprósio',   '66',  '162,50'],
+					['Hólmio',      '67',  '164,930'],
+					['Érbio',       '68',  '167,26'],
+					['Túlio',       '69',  '168,934'],
+					['Itérbio',     '70',  '173,04'],
+					['Lutécio',     '71',  '174,967'],
+ 					['Háfnio',      '72',  '178,49'],
+					['Tântalo',     '73',  '180,947'],
+					['Tungsténio',  '74',  '183,85'],
+					['Rénio',       '75',  '186,207'],
+					['Ósmio',       '76',  '190,2'],
+					['Irídio',      '77',  '192,22'],
+					['Platina',     '78',  '195,08'],
+					['Ouro',        '79',  '196,966'],
+					['Mercúrio',    '80',  '200,59'],
+					['Tálio',       '81',  '204,383'],
+					['Chumbo',      '82',  '207,2'],
+					['Bismuto',     '83',  '208,980'],
+					['Polónio',     '84',  '208,982'],
+					['Astato',      '85',  '209,987'],
+					['Radon',       '86',  '222,018'],
+					['Frâncio',     '87',  '223,019'],
+					['Rádio',       '88',  '226,025'],
+					['Actínio',     '89',  '227,027'],
+					['Tório',       '90',  '232,038'],
+					['Protactínio', '91',  '231,036'],
+					['Urânio',      '92',  '238,029'],
+					['Neptúnio',    '93',  '237,082'],
+					['Plutónio',    '94', '(244)'],
+					['Amerício',    '95',  '243,061'],
+					['Cúrio',       '96', '(247)'],
+					['Berquélio',   '97',  '247,070'],
+					['Califórnio',  '98',  '251,080'],
+					['Einsteinio',  '99', '(254)'],
+					['Férmio',     '100',  '257,095'],
+					['Mendelévio', '101',  '258,01'],
+					['Nobélio',    '102',  '259,101'],
+					['Laurêncio',  '103',  '260,105'],
+					['Ruterfórdio','104',  '261,11'],
+					['Dúbnio',     '105',  '262,11'],
+					['Seabórguio', '106',  '263,12'],
+					['Bóhrio',     '107',  '262,12'],
+					['Hássio',     '108',  '265,13'],
+					['Meitnério',  '109',  '266,137'],
+					['Darmstádio', '110', '(269)'],
+					['Roentgénio', '111', '(272)'],
+					['Copernício', '112', '(277)'],
+					['Ununtrium',  '113', '(284)'],
+					['Fleróvio',   '114', '(285)'],
+					['Ununpentium','115', '(288)'],
+					['Livermório', '116', '(293)'],
+					['Ununseptium','117', '(294)'],
+					['Ununoctum',  '118', '(294)']]
+
+
+
+function myFunction() {
+    var x = document.getElementByClassName('.l');
+//    var y = document.getElementByTagName("h1");
+//	var s = "";
+//	window.i = window.i + 5;
+//	s = String(window.i)+"px";
+//    x.style.fontSize = s;
+	document.alert(x.length);
+    x.style.color = "red";
+//    document.getElementById("demo").innerHTML = s;
+//    y.style.border-bottom = String(i);
+}
+//function mudaEstilo(selector, property, value) {
+//    for (var i=0; i<document.styleSheets.length;i++) {//Loop through all styles
+//		document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+//        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+//    }
+//}
+
+function mudaEstilo(selector, property, value) {
+	if (estado == 0){
+	    for (var i=0; i<document.styleSheets.length;i++) {//Loop through all styles
+	        //Try add rule
+	        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+	        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+	    }
+	}
+}
+
+
+function mostraElemento(nome){
+//function mostraElemento(nome,numero,peso,cor){
+//	document.write(nome,numero,peso);
+//	var x = document.getElementById("enome");
+//	x.style.color =("red");
+//	document.getElementById("caixa").innerHTML = nome+" elemento número "+numero+" de massa atómica "+peso;
+	if (estado == 0) {
+		document.getElementById("etitul1").innerHTML = 'Número atómico';
+		document.getElementById("etitul4").innerHTML = 'Massa atómica';
+		document.getElementById("enome").innerHTML = elementos[nome][0];
+		document.getElementById("enumero").innerHTML = elementos[nome][1];
+		document.getElementById("epeso").innerHTML = elementos[nome][2];
+	}
+	if ((estado > 0) && (nome<=118)) {
+			document.getElementById("eresposta").innerHTML = 'Passou ';			
+		if (nome == escolha){
+			document.getElementById("eresposta").innerHTML = 'Acertou';			
+		} else {
+			document.getElementById("eresposta").innerHTML = 'Errou';			
+		}
+	} 
+	if (nome>118) {
+		nome = nome - 118;
+		document.getElementById("etitul1").innerHTML = 'Número atómico';
+		document.getElementById("etitul4").innerHTML = 'Massa atómica';
+		document.getElementById("enome").innerHTML = elementos[nome][0];
+		document.getElementById("enumero").innerHTML = elementos[nome][1];
+		document.getElementById("epeso").innerHTML = elementos[nome][2];
+		document.getElementById("eresposta").innerHTML = '';
+	}
+	
+//	document.getElementById("enumero").innerHTML = numero;
+//	document.getElementById("epeso").innerHTML = peso;
+//	document.getElementById("caixa").style.backgroundColor = cor;
+}
+
+function limpaElemento() {
+	if (estado == 0) {
+		document.getElementById("etitul1").innerHTML = '';	
+		document.getElementById("etitul4").innerHTML = '';	
+		document.getElementById("enome").innerHTML = '';
+		document.getElementById("enumero").innerHTML = '';
+		document.getElementById("epeso").innerHTML = '';	
+		document.getElementById("eresposta").innerHTML = '';
+	}
+}
+
+
+function mudaEstado(){
+	switch (estado) {
+		case 0:
+//		mudaEstilo('.e','color','white');
+//		mudaEstilo('a','opacity','0');
+			document.getElementById("jogIni").innerHTML="Nível 2";
+			document.getElementById("jogo").style.visibility="visible";
+			estado = 1;
+			break;
+		case 1:
+			estado = 0;
+//		mudaEstilo('.e','color','black');	
+			mudaEstilo('a','opacity','0');
+			document.getElementById("jogIni").innerHTML="Estudo";
+//			document.getElementById("jogo").style.visibility="hidden";
+			estado = 2;
+			break;
+		case 2:
+			estado = 0;
+//		mudaEstilo('.e','color','black');	
+			mudaEstilo('a','opacity','1');
+			document.getElementById("jogIni").innerHTML="Nível 1";
+			document.getElementById("jogo").style.visibility="hidden";
+			break;
+		default:
+			break;
+	}
+}
+
+function jogar(){
+	if (estado > 0) {
+		escolha = Math.round((1+Math.random()*118));
+		var x = escolha + 118;
+		mostraElemento(x);
+	}
+}
+
+</script>
+</head>
+
+<body>
+<div id="pagina">
+	<div id ="cabeca">
+		<div id="logo">
+			&exist;
+		</div> <!-- #logo -->
+
+		<div id="cabeca_cont">
+		<br/>
+			Tabela Periódica de Mendeleiev
+		<br/>
+		</div> <!-- #cabeca_cont -->
+
+	</div> <!-- #cabeca -->
+
+	<div id ="conteudo">
+		<div id="menu">
+<!--		<p> </p>
+		<p> Propriedades </p>  -->
+<!--		<button type="button" onclick="myFunction()">Click Me!</button> -->
+<!--		<div id="box" class="boxes" onmouseover="css('#box', 'color', 'red')">Mouseover Me!</div> -->
+<!--		<button type="button" onclick="mudaEstilo('.e','color','#888')">Click Me!</button>
+		<button type="button" onclick="mudaEstilo('.e','color','#888')">Click Me!</button>
+		<button type="button" onmouseout ="mudaEstilo('.g','background','white')" onmouseover="mudaEstilo('.g','background','aqua')">Gases raros</button>
+		<button type="button" onmouseout ="mudaEstilo('.h','background','white')" onmouseover="mudaEstilo('.h','background','aqua')">Halogénios</button>
+		<button type="button" onmouseout ="mudaEstilo('.m','background','white')" onmouseover="mudaEstilo('.m','background','aqua')">Metais</button>
+		<button type="button" onmouseout ="mudaEstilo('.ma','background','white')" onmouseover="mudaEstilo('.ma','background','aqua')">Metais Alcalinos</button>
+		<button type="button" onmouseout ="mudaEstilo('.tr','background','white')" onmouseover="mudaEstilo('.tr','background','aqua')">Terras Raras</button>
+		-->
+		<table>
+		<tr><td></td></tr>
+		<tr> <td class="menu gr" onmouseout ="mudaEstilo('.gr','background','white')" onmouseover="mudaEstilo('.gr','background','aqua')">Gases nobres</td>
+		</tr>
+		<tr> <td class="menu h" onmouseout ="mudaEstilo('.h','background','white')" onmouseover="mudaEstilo('.h','background','lightgreen')">Halogénios</td>
+		</tr>
+		<tr> <td class="menu mt" onmouseout ="mudaEstilo('.mt','background','white')" onmouseover="mudaEstilo('.mt','background','teal')">Metais de Transição</td>
+		</tr>
+		<tr> <td class="menu ma" onmouseout ="mudaEstilo('.ma','background','white')" onmouseover="mudaEstilo('.ma','background','orange')">Metais Alcalinos</td>
+		</tr>
+		<tr> <td class="menu tr" onmouseout ="mudaEstilo('.tr','background','white')" onmouseover="mudaEstilo('.tr','background','aqua')">Terras Raras</td>
+		</tr>
+		<tr> <td class="menu nm" onmouseout ="mudaEstilo('.nm','background','white')" onmouseover="mudaEstilo('.nm','background','olive')">Não Metais</td>
+		</tr>
+		<tr> <td class="menu at" onmouseout ="mudaEstilo('.at','background','white')" onmouseover="mudaEstilo('.at','background','yellow')">Alcalino Terrosos</td>
+		</tr>
+		<tr> <td class="menu sm" onmouseout ="mudaEstilo('.sm','background','white')" onmouseover="mudaEstilo('.sm','background','lime')">Semi Metais</td>
+		</tr>
+		<tr> <td class="menu mb" onmouseout ="mudaEstilo('.mb','background','white')" onmouseover="mudaEstilo('.mb','background','fuchsia')">Metais Básicos</td>
+		</tr>
+		<tr> <td class="menu lq" onmouseout ="mudaEstilo('.lq','color','black')" onmouseover="mudaEstilo('.lq','color','blue')">Estado líquido</td>
+		</tr>
+		<tr> <td class="menu g" onmouseout ="mudaEstilo('.g','color','black')" onmouseover="mudaEstilo('.g','color','aqua')">Estado gasoso</td>
+		</tr>
+		<tr> <td class="menu ar" onmouseout ="mudaEstilo('.ar','color','black')" onmouseover="mudaEstilo('.ar','color','#BBB')">Artificiais</td>
+		</tr>
+		<tr> <td class="menu ra" onmouseout ="mudaEstilo('.ra','color','black')" onmouseover="mudaEstilo('.ra','color','red')">Radioativos</td>
+		</tr>
+		<tr><td> <button id="jogIni" type="button" onclick="mudaEstado()">Nível 1</button></td>
+		</tr>
+		<tr><td> <button id="jogo" type="button" onclick="jogar()">Jogar</button></td>
+		</tr>
+		</table>
+		</div> <!-- menu -->
+		<div id="tabela">
+		<table>
+			<tr>
+				<td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+				<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+				<td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+			</tr>
+			<tr>
+				<td></td><td class="l">IA</td><td class="l">IIA</td><td class="l">IIIB</td><td class="l">IVB</td><td class="l">VB</td><td class="l">VIB</td>
+				<td class="l">VIIB</td><td class="l" colspan="3">VIII</td><td class="l">IB</td><td class="l">IIB</td>
+				<td class="l">IIIA</td><td class="l">IVA</td><td class="l">VA</td><td class="l">VIA</td><td class="l">VIIA</td><td class="l">VIIIA</td>
+			</tr>
+			<tr>
+				<td></td><td></td><td></td><td colspan="10" rowspan="4">
+				<table id = "caixa">
+				<tr>
+					<td id ="etitul1" class="lmedia"></td>
+					<td></td><td></td><td></td>
+					<td id ="etitul4" class="lmedia"></td>
+				</tr>
+				<tr>
+					<td id = "enumero" class ="lmedia lbold"></td>
+					<td></td><td></td><td></td>
+					<td id = "epeso" class ="lmedia lbold"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" id = "enome"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td id="eresposta" colspan="3"></td>
+					<td></td>
+				</tr>
+				</table>
+				
+				</td><td></td>
+			</tr>
+			<tr>
+				<td>1</td><td class="e nm g">
+				<!-- a onmouseover ="mostraElemento('Hidrogénio','1','1,008','yellow')">H</a --> 
+				<a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(1)">H</a> 
+				</td><td></td> <td colspan="5"></td>
+				<!-- td></td><td></td><td></td><td></td>
+				<td></td><td></td><td></td><td></td><td></td><td></td>
+				<td></td><td></td><td></td><td></td><td></td -->
+				<!--td class="e gr g"><a onmouseout ="limpaElemento()" onmouseover ="mostraElemento('Hélio','2','4,003')">He</a></td -->
+				<td class="e gr g"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(2)">He</a></td>
+			</tr>
+			<tr>
+				<td>2</td><td class="e ma">
+				<!-- a onmouseout ="limpaElemento()" onmouseover ="mostraElemento('Lítio','3','6,491')">Li</a></td -->
+				<a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(3)">Li</a></td -->
+				<td class="e at">
+				<!-- a onmouseout ="limpaElemento()" onmouseover ="mostraElemento('Berílio','4','9,012')">Be</a></td><!--td colspan="10"></td-->
+				<a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(4)">Be</a></td><!--td colspan="10"></td -->
+				<!-- td></td><td></td><td></td>
+				<td></td><td></td><td></td><td></td><td></td><td></td -->
+				<td class="e sm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(5)">B</a></td>
+				<td class="e nm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(6)">C</a></td>
+				<td class="e nm g"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(7)">N</a></td>
+				<td class="e nm g"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(8)">O</a></td>
+				<td class="e h g"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(9)">F</a></td>
+				<td class="e g gr"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(10)">Ne</a></td>
+			</tr>
+			<tr>
+				<td>3</td><td class="e ma"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(11)">Na</a></td>
+				<td class="e at"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(12)">Mg</a></td><!--td colspan="10"></td-->
+				<!--td></td><td></td><td></td>
+				<td></td><td></td><td></td>
+				<td></td><td></td><td></td-->
+				<td class="e mb"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(13)">Al</a></td>
+				<td class="e sm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(14)">Si</a></td>
+				<td class="e nm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(15)">P</a></td>
+				<td class="e nm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(16)">S</a></td>
+				<td class="e h g"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(17)">Cl</a></td>
+				<td class="e g gr"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(18)">Ar</a></td>
+			</tr>
+			<tr>
+				<td>4</td><td class="e ma"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(19)">K</a></td>
+				<td class="e at"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(20)">Ca</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(21)">Sc</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(22)">Ti</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(23)">V</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(24)">Cr</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(25)">Mn</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(26)">Fe</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(27)">Co</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(28)">Ni</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(29)">Cu</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(30)">Zn</a></td>
+				<td class="e mb"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(31)">Ga</a></td>
+				<td class="e sm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(32)">Ge</a></td>
+				<td class="e sm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(33)">As</a></td>
+				<td class="e nm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(34)">Se</a></td>
+				<td class="e h lq"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(35)">Br</a></td>
+				<td class="e g gr"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(36)">Kr</a></td>
+			</tr>
+			<tr>
+				<td>5</td><td class="e ma"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(37)">Rb</a></td>
+				<td class="e at"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(38)">Sr</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(39)">Y</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(40)">Zr</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(41)">Nb</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(42)">Mo</a></td>
+				<td class="e mt ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(43)">Tc</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(44)">Ru</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(45)">Rh</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(46)">Pd</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(47)">Ag</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(48)">Cd</a></td>
+				<td class="e mb"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(49)">In</a></td>
+				<td class="e mb"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(50)">Sn</a></td>
+				<td class="e sm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(51)">Sb</a></td>
+				<td class="e sm"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(52)">Te</a></td>
+				<td class="e h"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(53)">I</a></td>
+				<td class="e g gr"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(54)">Xe</a></td>
+			</tr>
+			<tr>
+				<td>6</td><td class="e ma"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(55)">Cs</a></td>
+				<td class="e at"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(56)">Ba</a></td>
+				<td class="la" onmouseup ="mudaEstilo('.la','background','white')" onmousedown="mudaEstilo('.la','background','aqua')">*</td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(72)">Hf</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(73)">Ta</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(74)">W</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(75)">Re</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(76)">Os</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(77)">Ir</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(78)">Pt</a></td>
+				<td class="e mt"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(79)">Au</a></td>
+				<td class="e mt lq"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(80)">Hg</a></td>
+				<td class="e mb"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(81)">Tl</a></td>
+				<td class="e mb"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(82)">Pb</a></td>
+				<td class="e mb"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(83)">Bi</a></td>
+				<td class="e sm ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(84)">Po</a></td>
+				<td class="e h ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(85)">At</a></td>
+				<td class="e g gr ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(86)">Rn</a></td>
+			</tr>
+			<tr>
+				<td>7</td><td class="e ma ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(87)">Fr</a></td>
+				<td class="e at ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(88)">Ra</a></td>
+				<td class="ac"onmouseup ="mudaEstilo('.ac','background','white')" onmousedown="mudaEstilo('.ac','background','aqua')">**</td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(104)">Rf</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(105)">Db</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(106)">Sg</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(107)">Bh</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(108)">Hs</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(109)">Mt</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(110)">Ds</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(111)">Rg</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(112)">Cn</a></td>
+				<td class="e ar ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(113)">Uut</a></td>
+				<td class="e ar"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(114)">Fl</a></td>
+				<td class="e ar"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(115)">Uup</a></td>
+				<td class="e ar"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(116)">Lv</a></td>
+				<td class="e ar"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(117)">Uus</a></td>
+				<td class="e ar"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(118)">Uuo</a></td>
+			</tr>
+			<tr>
+				<td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+				<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+				<td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+			</tr>
+			<tr>
+				<td></td><td></td><td>6</td><td class="la">*</td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(57)">La</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(58)">Ce</a></td>
+				<td class="e tr ar la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(59)">Pr</a></td>
+				<td class="e tr la ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(60)">Nd</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(61)">Pm</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(62)">Sm</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(63)">Eu</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(64)">Gd</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(65)">Tb</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(66)">Dy</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(67)">Ho</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(68)">Er</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(69)">Tm</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(70)">Yb</a></td>
+				<td class="e tr la"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(71)">Lu</a></td>
+			</tr>
+			<tr>
+				<td></td><td></td><td>7</td><td class="ac">**</td>
+				<td class="e ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(89)">Ac</a></td>
+				<td class="e ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(90)">Th</a></td>
+				<td class="e ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(91)">Pa</a></td>
+				<td class="e ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(92)">U</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(93)">Np</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(94)">Pu</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(95)">Am</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(96)">Cm</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(97)">Bk</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(98)">Cf</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(99)">Es</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(100)">Fm</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(101)">Md</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(102)">No</a></td>
+				<td class="e ar ac ra"><a onmouseup ="limpaElemento()" onmousedown ="mostraElemento(103)">Lr</a></td>
+			</tr>
+		</table>
+		</div> <!-- tabela -->
+	</div>  <!-- conteudo -->
+<!--	<div>
+	Rodapé
+	</div>  -->
+</div>  <!-- pagina -->
+</body>
+
+</html>
